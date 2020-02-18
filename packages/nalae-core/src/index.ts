@@ -1,10 +1,10 @@
 import { IStorage } from './lib/storage';
+import { NalaeCluster } from './lib/cluster';
 
 function main() {
-  let storageList = IStorage.GetImplementations();
-  storageList.forEach(storage => {
-    console.log(storage['name']);
-  });
+  let cluster = new NalaeCluster();
+  let clusterList = cluster.getAvaliableStorageList()
+  console.log(clusterList);
 }
 
 main()

@@ -1,4 +1,4 @@
-interface IStorage {
+interface StorageInterface {
   // add some methods or something to distinguish from {}
   validate(): void;
   download(filename: string): void;
@@ -11,11 +11,11 @@ export namespace IStorage {
     new(...args: any[]): T;
     readonly prototype: T;
   }
-  const implementations: Constructor<IStorage>[] = [];
-  export function GetImplementations(): Constructor<IStorage>[] {
+  const implementations: Constructor<StorageInterface>[] = [];
+  export function GetImplementations(): Constructor<StorageInterface>[] {
     return implementations;
   }
-  export function register<T extends Constructor<IStorage>>(ctor: T) {
+  export function register<T extends Constructor<StorageInterface>>(ctor: T) {
     implementations.push(ctor);
     return ctor;
   }

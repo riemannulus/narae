@@ -1,2 +1,4 @@
-export {MegaStorage} from './MegaStorage'
-export {IStorage} from './StorageInterface'
+import MegaStorage from './MegaStorage'
+import {IStorage} from './StorageInterface'
+
+export { MegaStorage, IStorage }

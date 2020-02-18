@@ -3,7 +3,7 @@ import { IStorage } from './StorageInterface';
 
 
 @IStorage.register
-export class MegaStorage{
+export default class MegaStorage{
   private readonly userId: string;
   private readonly passwd: string;
   constructor(key: any){
