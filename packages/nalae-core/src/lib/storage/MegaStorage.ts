@@ -1,8 +1,9 @@
 import { AuthenticationError } from '../error';
-import { StorageInterface } from './StorageInterface'
+import { IStorage } from './StorageInterface';
 
 
-export class MegaStorage implements StorageInterface {
+@IStorage.register
+export class MegaStorage{
   private readonly userId: string;
   private readonly passwd: string;
   constructor(key: any){

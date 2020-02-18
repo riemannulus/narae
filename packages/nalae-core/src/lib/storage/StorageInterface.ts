@@ -1,14 +1,22 @@
-export interface StorageInterface {
+interface IStorage {
+  // add some methods or something to distinguish from {}
   validate(): void;
   download(filename: string): void;
   upload(filepath: string): void;
 }
 
-export type StorageConstructor = new (t: any) => StorageInterface;
-
-export function createStorage(
-  ctor: StorageConstructor,
-  key: any
-): StorageInterface {
-  return new ctor(key);
+// add a registry of the type you expect
+export namespace IStorage {
+  type Constructor<T> = {
+    new(...args: any[]): T;
+    readonly prototype: T;
+  }
+  const implementations: Constructor<IStorage>[] = [];
+  export function GetImplementations(): Constructor<IStorage>[] {
+    return implementations;
+  }
+  export function register<T extends Constructor<IStorage>>(ctor: T) {
+    implementations.push(ctor);
+    return ctor;
+  }
 }
