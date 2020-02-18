@@ -1,4 +1,4 @@
-import { Authentication } from '../error/auth';
+import { AuthenticationError } from '../error';
 import { StorageInterface } from './StorageInterface'
 
 
@@ -7,7 +7,7 @@ export class MegaStorage implements StorageInterface {
   private readonly passwd: string;
   constructor(key: any){
     if(!('userId' in key) || !('passwd' in key)){
-      throw new Authentication("Need Mega ID and Password.");
+      throw new AuthenticationError("Need Mega ID and Password.");
     }
     this.userId = key.userId;
     this.passwd = key.passwd;

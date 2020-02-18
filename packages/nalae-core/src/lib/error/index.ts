@@ -1,0 +1,1 @@
+export {AuthenticationError} from './auth'
