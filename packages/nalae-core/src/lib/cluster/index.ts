@@ -1,4 +1,4 @@
-import { StorageInterface, createStorage } from 'lib/storage'
+import { IStorage } from 'lib/storage'
 
 
 export interface ClusterInterface {
