@@ -1,2 +1,2 @@
-export {createStorage, StorageInterface} from './StorageInterface'
 export {MegaStorage} from './MegaStorage'
+export {IStorage} from './StorageInterface'
