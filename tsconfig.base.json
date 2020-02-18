@@ -1,6 +1,8 @@
 {
   "include": ["packages/*/src"],
   "compilerOptions": {
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
     "declaration": true,
     "declarationMap": true,
     "baseUrl": ".",
