@@ -1,4 +1,4 @@
-interface StorageInterface {
+export interface StorageInterface {
   // add some methods or something to distinguish from {}
   validate(): void;
   download(filename: string): void;
