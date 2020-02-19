@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "tests/cluster.test.ts"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",

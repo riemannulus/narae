@@ -2,6 +2,7 @@
   "include": ["packages/*/src"],
   "compilerOptions": {
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
     "declarationMap": true,
