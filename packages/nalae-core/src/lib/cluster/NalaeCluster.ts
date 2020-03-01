@@ -17,7 +17,7 @@ export default class NalaeCluster implements ClusterInterface {
   delete(filepath: string): boolean {
     throw new Error("Method not implemented.");
   }
-  getAvaliableStorageList(): string[] {
+  getAvailableStorageList(): string[] {
     return IStorage.GetImplementations().map(x=>x.name);
   }
   addStorage(storageName: string, key: object): boolean {

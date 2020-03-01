@@ -3,7 +3,7 @@ import { NalaeCluster } from './lib/cluster';
 
 function main() {
   let cluster = new NalaeCluster();
-  let clusterList = cluster.getAvaliableStorageList()
+  let clusterList = cluster.getAvailableStorageList();
   console.log(clusterList);
 }
 
