@@ -1,3 +1,3 @@
-import {File, Sector} from './model'
+import { File, Chunk, ChunkMetadata } from './model'
 
-export { File, Sector }
+export { File, Chunk, ChunkMetadata }
