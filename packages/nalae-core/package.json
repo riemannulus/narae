@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn workspace nalae-core tsc",
     "clean": "rm -rf ./dist",
-    "start": "yarn workspace nalae-core clean && yarn workspace nalae-core build && node ./dist/index.js",
+    "start": "yarn workspace nalae-core clean && yarn workspace nalae-core build && node ./dist/src/index.js",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
     "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
   },
