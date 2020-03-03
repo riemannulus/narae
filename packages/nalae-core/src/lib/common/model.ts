@@ -1,14 +1,31 @@
 import {GetHash} from "./utils";
 import {appendFile} from "fs";
 
+export class FileMetadata {
+  private chunkMetadataArray: Array<ChunkMetadata>;
+  constructor(
+    public readonly name: string
+  ) {
+    this.chunkMetadataArray = new Array<ChunkMetadata>();
+  }
+
+  public addChunkMetaData(data: ChunkMetadata): void {
+    this.chunkMetadataArray.push(data);
+  }
+  public getChunkMetaData(): Array<ChunkMetadata>{
+    return this.chunkMetadataArray;
+  }
+}
 
 export class File{
   public readonly size: number;
+  public fileMetadata: FileMetadata;
   constructor(
     private readonly buffer: ArrayBuffer,
-    public readonly name: string
+    name: string,
   ) {
     this.size = buffer.byteLength;
+    this.fileMetadata = new FileMetadata(name);
   }
 
   public chop(chunkSize: number): Array<Chunk> {
@@ -17,21 +34,21 @@ export class File{
     const modSize = this.size % chunkSize;
 
     for (let i = 0; i < numberOfSlice; i++) {
-      let metadata = new ChunkMetadata(i,'test', null);
       let startByte = i * chunkSize;
       let endByte = startByte + chunkSize;
 
       let chunk = this.buffer.slice(startByte, endByte);
-      chunks.push(new Chunk(metadata, chunk))
+      let metadata = new ChunkMetadata(i,GetHash.fromArrayBuffer(chunk), null);
+      chunks.push(new Chunk(metadata, chunk));
+      this.fileMetadata.addChunkMetaData(metadata);
     }
     let mod = this.size - modSize;
 
     let lastChunk = this.buffer.slice(mod, this.size);
+    let metadata = new ChunkMetadata(numberOfSlice, GetHash.fromArrayBuffer(lastChunk), null);
 
-    chunks.push(new Chunk(
-      new ChunkMetadata(numberOfSlice, 'test', null),
-      lastChunk
-    ));
+    chunks.push(new Chunk(metadata, lastChunk));
+    this.fileMetadata.addChunkMetaData(metadata);
 
     return chunks
   }
@@ -67,7 +84,8 @@ export class ChunkMetadata {
   public getStorageId(): string {
     return this.storageId;
   }
-  public setStorageId(): string {
+  public setStorageId(storageId: string): string {
+    this.storageId = storageId;
     return this.storageId;
   }
 }
@@ -91,6 +109,10 @@ export class Chunk {
   }
   public getUint8(): Uint8Array {
     return new Uint8Array(this.buffer);
+  }
+  public setStorageId(storageId: string): string {
+    this.metaData.setStorageId(storageId);
+    return this.metaData.getStorageId();
   }
 
   public static sort(chunks: Array<Chunk>): Array<Chunk> {
