@@ -1,25 +1,47 @@
-import { AuthenticationError } from '../error';
-import { IStorage } from './StorageInterface';
+import {AuthenticationError} from '../error';
+import {Chunk, ChunkMetadata} from "../common";
+import {IStorage} from './StorageInterface';
+import {Storage} from 'megajs'
+import {NotMachedIdStorageError} from "../error/storage";
+import {GetHash} from "../common/utils";
 
 
 @IStorage.register
 export default class MegaStorage{
   private readonly userId: string;
   private readonly passwd: string;
+  private readonly session: Storage;
+  private readonly storageId: string;
   constructor(key: any){
     if(!('userId' in key) || !('passwd' in key)){
       throw new AuthenticationError("Need Mega ID and Password.");
     }
+
     this.userId = key.userId;
     this.passwd = key.passwd;
+    this.session = new Storage({
+      email: this.userId,
+      password: this.passwd,
+    });
+    this.storageId = GetHash.fromArrayString([this.userId, this.passwd]);
   }
-  public validate(): void {
-    console.log("hello world!")
+  public usedSpace(): number {
+    let spaceUsed: number;
+    this.session.getAccountInfo(account => {
+      spaceUsed = account.spaceUsed;
+    });
+    return spaceUsed
   }
-  public download(filename: string): void {
-    console.log(filename.concat(this.userId))
+  public fetch(chunkMetadata: ChunkMetadata): Chunk {
+    if (chunkMetadata.getStorageId() === this.storageId){
+      throw new NotMachedIdStorageError(this.storageId, chunkMetadata.getStorageId());
+    }
+    return new Chunk(chunkMetadata, Buffer.from('*'.repeat(100)));
   }
-  public upload(filename: string): void {
-    console.log(filename.concat(this.passwd))
+  public pull(chunk: Chunk): string {
+    return 'filename'
+  }
+  public getStorageId(): string {
+    return this.storageId;
   }
 }

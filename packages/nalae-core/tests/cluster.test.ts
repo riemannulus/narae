@@ -1,31 +1,23 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import { NalaeCluster, ClusterInterface } from '../src/lib/cluster'
+import { NalaeCluster, ClusterAbstract } from '../src/lib/cluster'
+import sinon from 'sinon';
+import {MegaStorage} from "../src/lib/storage";
 
-
-let cluster: ClusterInterface;
-let filename: string;
-const filesize: number = 123412341;
 
 describe('cluster', function() {
   before(function() {
-    cluster = new NalaeCluster();
   })
   beforeEach(function() {
-    filename = cluster.write(Buffer.from('*'.repeat(filesize)));
   });
 
   describe('read', function() {
     it('should be read file success', function () {
-      let buf = cluster.read(filename);
-      expect(buf.toString).to.be('*'.repeat(filesize))
-    }); 
+    });
   });
 
   describe('delete', function () {
     it('should be delete file success', function() {
-      let status = cluster.delete(filename);
-      expect(status).is.true;
     });
   });
 

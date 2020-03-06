@@ -1,4 +1,4 @@
 import NalaeCluster from './NalaeCluster';
-import ClusterInterface from './ClusterInterface'
+import ClusterAbstract from './ClusterAbstract'
 
-export {NalaeCluster, ClusterInterface}
+export {NalaeCluster, ClusterAbstract}

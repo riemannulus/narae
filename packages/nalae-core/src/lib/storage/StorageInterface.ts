@@ -1,8 +1,12 @@
+import {Chunk, ChunkMetadata} from '../common'
+
+
 export interface StorageInterface {
   // add some methods or something to distinguish from {}
-  validate(): void;
-  download(filename: string): void;
-  upload(filepath: string): void;
+  usedSpace(): number;
+  fetch(chunkMetadata: ChunkMetadata): Chunk;
+  pull(bufferedBytes: Chunk): void;
+  getStorageId(): string;
 }
 
 // add a registry of the type you expect
