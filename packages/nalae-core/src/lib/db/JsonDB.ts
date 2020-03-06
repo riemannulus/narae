@@ -1,5 +1,5 @@
 import {readFile, readFileSync, writeFile} from "fs";
-import {FileMetadata} from "../common/model";
+import {FileMetadata} from "../domain/file";
 
 export class JsonDBModel{
   files: FileMetadata[];

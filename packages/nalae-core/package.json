@@ -11,6 +11,10 @@
     "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
   },
   "dependencies": {
+    "@types/megajs": "^0.14.1",
+    "@types/sinon": "^7.5.2",
+    "megajs": "^0.16.1",
+    "sinon": "^9.0.0",
     "typescript-json-serializer": "^1.4.4"
   },
   "devDependencies": {
