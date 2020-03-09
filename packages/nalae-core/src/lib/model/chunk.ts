@@ -1,4 +1,5 @@
 import {File} from "./file";
+import Model from "./common";
 
 export class ChunkMetadata {
 
@@ -23,7 +24,7 @@ export class ChunkMetadata {
   }
 }
 
-export class Chunk {
+export class Chunk implements Model{
 
   constructor(
     private readonly metaData: ChunkMetadata,
