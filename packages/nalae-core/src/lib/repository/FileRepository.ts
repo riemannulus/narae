@@ -2,7 +2,7 @@ import {readFileSync, writeFile} from "fs";
 import {File, FileMetadata} from "../model/file";
 import {Dictionary} from "../common/interface";
 
-export default class FileRepository {
+class FileRepository {
   private readonly db: Dictionary<FileMetadata>;
   private readonly dbPath: string = 'file.json';
   constructor() {
@@ -21,8 +21,14 @@ export default class FileRepository {
     });
   }
 
-  public insert(data: File): void {
-    this.db[data.fileMetadata.name] = data.fileMetadata;
+  public insert(data: FileMetadata): void {
+    this.db[data.name] = data;
     this.saveFile();
   }
+
+  public findBy(name: string): FileMetadata {
+    return this.db[name];
+  }
 }
+
+export const fileRepository = new FileRepository();

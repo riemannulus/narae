@@ -1,6 +1,7 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
-import {Chunk, File} from "../src/lib/common";
+import {File} from "../src/lib/model/file";
+import {Chunk} from "../src/lib/model/chunk";
 
 
 let file: File;
