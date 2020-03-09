@@ -1,5 +1,5 @@
 import { describe, it } from 'mocha'
-import {File} from "../src/lib/common";
+import {File} from "../src/lib/model/file";
 import FileRepository from "../src/lib/repository/FileRepository";
 
 

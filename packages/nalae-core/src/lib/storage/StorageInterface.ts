@@ -1,4 +1,4 @@
-import {Chunk, ChunkMetadata} from '../common'
+import {Chunk, ChunkMetadata} from '../model/chunk'
 
 
 export interface StorageInterface {

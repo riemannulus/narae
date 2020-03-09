@@ -1,4 +1,4 @@
-import {File} from "../common"
+import {File} from "../model/file"
 
 
 export default abstract class ClusterAbstract {

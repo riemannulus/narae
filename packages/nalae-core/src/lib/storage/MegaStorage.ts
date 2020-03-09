@@ -1,5 +1,5 @@
 import {AuthenticationError} from '../error';
-import {Chunk, ChunkMetadata} from "../common";
+import {Chunk, ChunkMetadata} from "../model/chunk";
 import {IStorage} from './StorageInterface';
 import {Storage} from 'megajs'
 import {NotMachedIdStorageError} from "../error/storage";
@@ -26,7 +26,7 @@ export default class MegaStorage{
     this.storageId = GetHash.fromArrayString([this.userId, this.passwd]);
   }
   public usedSpace(): number {
-    let spaceUsed: number;
+    let spaceUsed: number = 0;
     this.session.getAccountInfo(account => {
       spaceUsed = account.spaceUsed;
     });

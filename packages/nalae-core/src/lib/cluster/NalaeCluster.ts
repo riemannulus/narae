@@ -1,6 +1,7 @@
 import { IStorage, StorageInterface } from '../storage'
 import ClusterAbstract from './ClusterAbstract'
-import {Chunk, File} from "../common";
+import {File} from "../model/file";
+import {Chunk} from "../model/chunk";
 
 export default class NalaeCluster extends ClusterAbstract {
 
@@ -21,6 +22,7 @@ export default class NalaeCluster extends ClusterAbstract {
       currentStorage.pull(chunk);
       chunk.setStorageId(currentStorage.getStorageId());
     });
+
 
   }
   public read(filepath: string): File {
