@@ -1,4 +1,4 @@
-import {File} from "../domain/file";
-import {Chunk, ChunkMetadata} from "../domain/chunk";
+import {File} from "../model/file";
+import {Chunk, ChunkMetadata} from "../model/chunk";
 
 export { File, Chunk, ChunkMetadata }

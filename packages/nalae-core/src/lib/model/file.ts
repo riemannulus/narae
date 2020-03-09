@@ -1,6 +1,7 @@
 import {GetHash} from "../common/utils";
 import {appendFile} from "fs";
-import {Chunk, ChunkMetadata} from "../common";
+import {Chunk, ChunkMetadata} from "./chunk";
+import Model from "./common";
 
 export class FileMetadata {
   private chunkMetadataArray: Array<ChunkMetadata>;
@@ -20,7 +21,8 @@ export class FileMetadata {
   }
 }
 
-export class File {
+export class File implements Model{
+
   public readonly size: number;
   public fileMetadata: FileMetadata;
 
@@ -30,6 +32,10 @@ export class File {
   ) {
     this.size = buffer.byteLength;
     this.fileMetadata = new FileMetadata(name);
+  }
+
+  public toJson(): string {
+    throw new Error("Method not implemented.");
   }
 
   public chop(chunkSize: number): Array<Chunk> {
@@ -70,6 +76,4 @@ export class File {
       }
     });
   }
-
-
 }
