@@ -24,14 +24,14 @@ export class FileMetadata {
 export class File implements Model{
 
   public readonly size: number;
-  public fileMetadata: FileMetadata;
+  public metadata: FileMetadata;
 
   constructor(
     private readonly buffer: ArrayBuffer,
     name: string,
   ) {
     this.size = buffer.byteLength;
-    this.fileMetadata = new FileMetadata(name);
+    this.metadata = new FileMetadata(name);
   }
 
   public toJson(): string {
@@ -50,7 +50,7 @@ export class File implements Model{
       let chunk = this.buffer.slice(startByte, endByte);
       let metadata = new ChunkMetadata(i, GetHash.fromArrayBuffer(chunk), null);
       chunks.push(new Chunk(metadata, chunk));
-      this.fileMetadata.addChunkMetaData(metadata);
+      this.metadata.addChunkMetaData(metadata);
     }
     let mod = this.size - modSize;
 
@@ -58,7 +58,7 @@ export class File implements Model{
     let metadata = new ChunkMetadata(numberOfSlice, GetHash.fromArrayBuffer(lastChunk), null);
 
     chunks.push(new Chunk(metadata, lastChunk));
-    this.fileMetadata.addChunkMetaData(metadata);
+    this.metadata.addChunkMetaData(metadata);
 
     return chunks
   }
