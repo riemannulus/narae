@@ -2,6 +2,7 @@ import { IStorage, StorageInterface } from '../storage'
 import ClusterAbstract from './ClusterAbstract'
 import {File} from "../model/file";
 import {Chunk} from "../model/chunk";
+import { fileRepository } from "../repository/FileRepository";
 
 export default class NalaeCluster extends ClusterAbstract {
 
@@ -23,7 +24,7 @@ export default class NalaeCluster extends ClusterAbstract {
       chunk.setStorageId(currentStorage.getStorageId());
     });
 
-
+    fileRepository.insert(file.metadata);
   }
   public read(filepath: string): File {
     throw new Error("Method not implemented.");
