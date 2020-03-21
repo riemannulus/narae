@@ -4,7 +4,7 @@ import {File} from "../model/file";
 import {Chunk} from "../model/chunk";
 import { fileRepository } from "../repository/FileRepository";
 
-export default class NalaeCluster extends ClusterAbstract {
+export default class NaraeCluster extends ClusterAbstract {
 
   constructor(
     private storageList: Array<StorageInterface>,
@@ -20,7 +20,7 @@ export default class NalaeCluster extends ClusterAbstract {
     let choppedData: Array<Chunk> = file.chop(this.chunkSize);
     choppedData.forEach((chunk, index)=>{
       let currentStorage: StorageInterface = this.storageList[index % this.storageList.length];
-      currentStorage.pull(chunk);
+      currentStorage.push(chunk);
       chunk.setStorageId(currentStorage.getStorageId());
     });
 

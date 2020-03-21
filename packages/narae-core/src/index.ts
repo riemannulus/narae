@@ -1,5 +1,5 @@
 import { IStorage } from './lib/storage';
-import { NalaeCluster } from './lib/cluster';
+import { NaraeCluster } from './lib/cluster';
 
 function main() {
 }

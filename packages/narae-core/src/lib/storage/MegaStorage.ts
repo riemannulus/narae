@@ -38,7 +38,7 @@ export default class MegaStorage{
     }
     return new Chunk(chunkMetadata, Buffer.from('*'.repeat(100)));
   }
-  public pull(chunk: Chunk): string {
+  public push(chunk: Chunk): string {
     return 'filename'
   }
   public getStorageId(): string {

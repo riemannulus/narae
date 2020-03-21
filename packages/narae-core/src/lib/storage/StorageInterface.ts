@@ -5,7 +5,7 @@ export interface StorageInterface {
   // add some methods or something to distinguish from {}
   usedSpace(): number;
   fetch(chunkMetadata: ChunkMetadata): Chunk;
-  pull(bufferedBytes: Chunk): void;
+  push(bufferedBytes: Chunk): void;
   getStorageId(): string;
 }
 
